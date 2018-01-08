@@ -27,7 +27,7 @@ public class BeanDefinition {
         this.beanClass = beanClass;
     }
 
-    public void setBeanClassName(String beanCLassName) {
+    public void setBeanClassName(String beanClassName) {
         this.beanClassName = beanClassName;
         try {
             this.beanClass = Class.forName(beanClassName);
