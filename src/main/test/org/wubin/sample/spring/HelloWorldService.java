@@ -6,7 +6,13 @@ package org.wubin.sample.spring;
  **/
 public class HelloWorldService {
 
-    public void helloworld() {
-        System.out.println("Hello World!");
+    private String text;
+
+    public void helloWorld() {
+        System.out.println(text);
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

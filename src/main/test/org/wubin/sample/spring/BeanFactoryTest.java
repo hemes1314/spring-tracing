@@ -11,17 +11,24 @@ import org.wubin.sample.spring.factory.BeanFactory;
 public class BeanFactoryTest {
 
     @Test
-    public void test() {
+    public void test() throws Exception {
         // 1.初始化
         BeanFactory beanFactory = new AutowireCapableBeanFactory();
 
-        // 2.注入
+        // 2.bean定义
         BeanDefinition beanDefinition = new BeanDefinition();
         beanDefinition.setBeanClassName("org.wubin.sample.spring.HelloWorldService");
-        beanFactory.registerBeanDefinition("helloWorldService", beanDefinition);
 
         // 3.获取bean
-        HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
-        helloWorldService.helloworld();
+        PropertyValues propertyValues = new PropertyValues();
+        propertyValues.addPropertyValue(new PropertyValue("text", "Hello World!!!"));
+        beanDefinition.setPropertyValues(propertyValues);
+
+        // 4.生成bean
+        beanFactory.registerBeanDefinition("helloWorldService", beanDefinition);
+
+        // 5.获取bean
+        HelloWorldService helloWorldService = (HelloWorldService)beanFactory.getBean("helloWorldService");
+        helloWorldService.helloWorld();
     }
 }
